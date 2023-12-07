@@ -2,24 +2,25 @@ import pygame
 
 
 class Settings():
-    """A class to store all the basics settings for rummikub"""
 
     def __init__(self) -> None:
         # Screen settings
         pygame.mixer.init()
         self.screen_width = 1280
         self.screen_height = 720
-        self.bg_color = (0, 165, 207)#(51, 92, 103)#(128, 237, 153) #(82, 113, 255) 
+        self.bg_color = (0, 165, 207)
         self.caption = "Rummikub"
         self.time_left = 30
 
         # Player Racks settings
-        self.player_rack_width = 875
-        self.player_rack_height = 200
+        self.player_rack_width = 1280
+        self.player_rack_height = 190
         self.border_radius = 10
         self.border_color = (255, 255, 255)
-        self.player_rack_color = (157, 207, 162) #(255, 145, 77)
-
+        self.player_rack_color = (174, 209, 206)#(157, 207, 162) 
+        self.player_rack = pygame.Surface((self.player_rack_width, self.player_rack_height))
+        self.player_rack.fill(self.player_rack_color)
+        self.player_rack.set_alpha(200)
         # Sounds 
         self.click_sound = pygame.mixer.Sound("assets/sounds/tiles.wav")
         self.tiles_sound = pygame.mixer.Sound("assets/sounds/tiles.wav")
@@ -33,25 +34,30 @@ class Settings():
         # Background image
         self.bg_image = pygame.image.load("assets/images/start_screen.png")
         self.bg_image = pygame.transform.scale(self.bg_image, (self.screen_width, self.screen_height))
+        self.bg_image1 = pygame.image.load("assets/images/screen_1.png")
+        self.bg_image1 = pygame.transform.scale(self.bg_image1, (self.screen_width, self.screen_height))
         self.bg_image2 = pygame.image.load("assets/images/background2.png")
         self.bg_image2 = pygame.transform.scale(self.bg_image2, (self.screen_width, self.screen_height))
         self.bg_rect = self.bg_image.get_rect()
-        self.bg_rect2 = self.bg_image2.get_rect()
 
     def draw_bg(self, screen, flag=0):
         if flag==1:
-            screen.blit(self.bg_image, self.bg_rect2)
+            screen.blit(self.bg_image, self.bg_rect)
+
+        elif flag==2:
+            screen.blit(self.bg_image1, self.bg_rect)
         else:
             screen.blit(self.bg_image2, self.bg_rect)
 
     def draw_racks(self, screen):
-        inner_rect = pygame.Rect(0, self.screen_height - (self.player_rack_height+30), self.screen_width, self.player_rack_height+30)
-        pygame.draw.rect(screen, self.player_rack_color, inner_rect)
+        # inner_rect = pygame.Rect(0, self.screen_height - (self.player_rack_height+30), self.screen_width, self.player_rack_height+30)
+        # pygame.draw.rect(screen, self.player_rack_color, inner_rect)
+        screen.blit(self.player_rack, (0, self.screen_height - (self.player_rack_height+30)))
 
 
 class Button():
     def __init__(self, color, x, y, width, height, text=''):
-        self.color = color
+        self.color = (61, 118, 126)
         self.x = x
         self.y = y
         self.width = width

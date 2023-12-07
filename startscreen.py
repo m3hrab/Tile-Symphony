@@ -1,7 +1,8 @@
 import pygame
+import sys
 from settings import Label, TextBox
 
-class StartScreen():
+class GameMenu():
 
     def __init__(self, screen, settings) -> None:
         self.screen = screen
@@ -22,7 +23,9 @@ class StartScreen():
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.running = False
-                    return 1
+                    pygame.quit()
+                    sys.exit()
+
                 self.player_name.handle_event(event)
                 self.num_players.handle_event(event)
 

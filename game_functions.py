@@ -183,15 +183,22 @@ def handle_events(current_screen, gamescreen, settings):
         if current_screen == gamescreen:
             handle_game_screen_events(event, gamescreen, settings)
 
-def handle_start_screen_events(startscreen, gamescreen, settings):
-    next_screen = startscreen.run_screen()
-    if next_screen is not None:
-        gamescreen.players.append(Player(next_screen[0]))
-        gamescreen.initialize_game(next_screen[1])
-        settings.game_trun_sound.play()
-        return gamescreen
-    return startscreen
+def handle_start_screen_events(flag, mainmenu, gamemenu, game, settings):
+    if flag==1:
+        next_screen = mainmenu.run_screen()
 
+        if next_screen == 1:
+            return gamemenu
+        return mainmenu
+    
+    elif flag==2:
+        next_screen = gamemenu.run_screen()
+        if next_screen is not None:
+            game.players.append(Player(next_screen[0]))
+            game.initialize_game(next_screen[1])
+            settings.game_trun_sound.play()
+            return game
+        return gamemenu
 
 
 def update_gamescreen(screen, gamescreen):
@@ -211,7 +218,7 @@ def update_gamescreen(screen, gamescreen):
 def update_screen(screen, settings, current_screen, gamescreen):
     # Draw the screen table
     # screen.fill(settings.bg_color)
-    settings.draw_bg(screen, 2)
+    settings.draw_bg(screen)
 
     # Draw the player rack bg
     settings.draw_racks(screen)

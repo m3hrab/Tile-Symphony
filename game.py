@@ -1,13 +1,12 @@
 import pygame 
 import random
 from player import Player
-from tile import Tile
+from card import Tile
 from table import Table
 from settings import Button, Label
-
 PLAYER_TURN_EVENT = pygame.USEREVENT + 1
 
-class GameScreen():
+class Game():
 
     def __init__(self, screen, settings):
         self.screen = screen
@@ -258,6 +257,6 @@ class GameScreen():
         for y, row in enumerate(self.table_grid):
             for x, tile in enumerate(row):
                 if tile is not None:
-                    tile.rect.x = x * 60
+                    tile.rect.x = x * 60 - (3 * x)
                     tile.rect.y = y * 75
                     tile.draw(self.screen)

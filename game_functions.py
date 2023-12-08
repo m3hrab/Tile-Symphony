@@ -206,7 +206,6 @@ def update_gamescreen(screen, gamescreen):
         gamescreen.update_time_left()
         gamescreen.draw_current_player_rack()
         gamescreen.draw_table()
-        # gamescreen.draw_hud()
         gamescreen.update_info_card()
         gamescreen.display_info_card()
         if gamescreen.time_left > 0 and len(gamescreen.two_random_tiles) != 0:

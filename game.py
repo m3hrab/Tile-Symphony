@@ -186,8 +186,8 @@ class Game():
 
     def draw_two_random_tiles(self):
         for i, tile in enumerate(self.two_random_tiles):
-            tile.rect.x = self.settings.player_rack_width + 40 
-            tile.rect.y = self.settings.screen_height  - (100 + i * tile.rect.height)
+            tile.rect.x = self.settings.player_rack_width - 300 
+            tile.rect.y = self.settings.screen_height  - (100 + i * tile.rect.height+(5*i))
             tile.draw(self.screen)
 
 
@@ -257,6 +257,6 @@ class Game():
         for y, row in enumerate(self.table_grid):
             for x, tile in enumerate(row):
                 if tile is not None:
-                    tile.rect.x = x * 60 - (3 * x)
-                    tile.rect.y = y * 75
+                    tile.rect.x = x * 60 
+                    tile.rect.y = y * 75 
                     tile.draw(self.screen)

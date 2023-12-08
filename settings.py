@@ -20,7 +20,7 @@ class Settings():
         self.player_rack_color = (174, 209, 206)#(157, 207, 162) 
         self.player_rack = pygame.Surface((self.player_rack_width, self.player_rack_height))
         self.player_rack.fill(self.player_rack_color)
-        self.player_rack.set_alpha(200)
+        self.player_rack.set_alpha(150)
         # Sounds 
         self.click_sound = pygame.mixer.Sound("assets/sounds/tiles.wav")
         self.tiles_sound = pygame.mixer.Sound("assets/sounds/tiles.wav")
@@ -91,6 +91,7 @@ class Label():
 
     def update_text(self, text, color=(255, 0, 0)):
         self.text = self.font.render(text, True, color)
+
     def draw(self, screen):
         screen.blit(self.text, self.position)
 

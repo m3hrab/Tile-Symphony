@@ -53,7 +53,7 @@ class Game():
 
     def create_players(self, number_of_players):
         for i in range(number_of_players):
-            self.players.append(Player("bot" + str(i + 1))) 
+            self.players.append(Player("AI PLAYER-" + str(i + 1))) 
 
     def create_tile_pool(self):
         # colors = ["black", "blue", "green", "red", "yellow"]
@@ -220,12 +220,11 @@ class Game():
         self.tiles_left_label.update_text(f"Tiles left: {len(self.tile_pool)}", (255,255,255))
 
     def display_info_card(self):
-
-        self.timer_label.draw(self.screen)
         self.player_name_label.draw(self.screen)
+        self.timer_label.draw(self.screen)
         self.tiles_left_label.draw(self.screen)
         self.see_more_button.draw(self.screen)
-        if "bot" not in self.current_player.name or self.is_play_for_me_button_clicked:
+        if "PLAYER" not in self.current_player.name or self.is_play_for_me_button_clicked:
             self.make_turn_button.draw(self.screen)
             self.confirm_button.draw(self.screen)
         else:
@@ -244,10 +243,10 @@ class Game():
         if len(self.current_player.rack) > 28 and self.is_see_more_button_clicked:
             flag = True
 
-        if "bot" not in self.current_player.name:
+        if "PLAYER" not in self.current_player.name:
             self.current_player.draw_rack(self.screen, self.settings, flag)
         
-        elif "bot" in self.current_player.name:
+        elif "PLAYER" in self.current_player.name:
             if self.is_show_tiles_button_clicked or self.is_play_for_me_button_clicked:
                 self.current_player.draw_rack(self.screen, self.settings, flag)
 
